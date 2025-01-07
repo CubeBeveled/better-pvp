@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
+  "id": "better-pvp",
   "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for Meteor Client addons.",
+  "name": "Better PvP",
+  "description": "A meteor client addon with PvP related modules.",
   "authors": [
-    "seasnail"
+    "Beveled Cube"
   ],
   "contact": {
-    "repo": "https://github.com/MeteorDevelopment/meteor-addon-template"
+    "repo": "https://github.com/CubeBeveled/better-pvp"
   },
   "icon": "assets/template/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "com.example.addon.AddonTemplate"
+      "com.betterpvp.addon.BetterPvP"
     ]
   },
   "mixins": [
-    "addon-template.mixins.json"
+    "better-pvp.mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "225,25,25"
+    "meteor-client:color": "99,99,99"
   },
   "depends": {
     "java": ">=21",

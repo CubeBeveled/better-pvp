@@ -1,6 +1,6 @@
-package com.example.addon.mixin;
+package com.betterpvp.addon.mixin;
 
-import com.example.addon.AddonTemplate;
+import com.betterpvp.addon.BetterPvP;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +26,6 @@ public abstract class ExampleMixin {
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void onGameLoaded(RunArgs args, CallbackInfo ci) {
-        AddonTemplate.LOG.info("Hello from ExampleMixin!");
+        BetterPvP.LOG.info("Hello from ExampleMixin!");
     }
 }

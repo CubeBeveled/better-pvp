@@ -1,12 +1,13 @@
-package com.example.addon.modules;
+package com.betterpvp.addon.modules;
 
-import com.example.addon.AddonTemplate;
+import com.betterpvp.addon.BetterPvP;
 import meteordevelopment.meteorclient.events.render.Render3DEvent;
 import meteordevelopment.meteorclient.renderer.ShapeMode;
 import meteordevelopment.meteorclient.settings.ColorSetting;
 import meteordevelopment.meteorclient.settings.DoubleSetting;
 import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
@@ -14,7 +15,7 @@ import meteordevelopment.orbit.EventHandler;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 
-public class ModuleExample extends Module {
+public class CrystalAuraMinus extends Module {
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
     private final SettingGroup sgRender = this.settings.createGroup("Render");
 
@@ -42,13 +43,17 @@ public class ModuleExample extends Module {
     /**
      * The {@code name} parameter should be in kebab-case.
      */
-    public ModuleExample() {
-        super(AddonTemplate.CATEGORY, "world-origin", "An example module that highlights the center of the world.");
+    public CrystalAuraMinus() {
+        super(BetterPvP.CATEGORY, "crystal-aura-minus", "Crystal aura but worse");
+    }
+
+    public CrystalAuraMinus(Category category, String name, String desc) {
+        super(category, name, desc);
     }
 
     /**
      * Example event handling method.
-     * Requires {@link AddonTemplate#getPackage()} to be setup correctly, will fail silently otherwise.
+     * Requires {@link BetterPvP#getPackage()} to be setup correctly, will fail silently otherwise.
      */
     @EventHandler
     private void onRender3d(Render3DEvent event) {
@@ -63,4 +68,7 @@ public class ModuleExample extends Module {
         // Render the marker based on the color setting
         event.renderer.box(marker, color.get(), color.get(), ShapeMode.Both, 0);
     }
+
+    @EventHandler
+    private void on
 }
