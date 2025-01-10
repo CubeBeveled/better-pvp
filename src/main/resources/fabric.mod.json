@@ -21,7 +21,7 @@
     "better-pvp.mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "99,99,99"
+    "meteor-client:color": "192, 207, 209"
   },
   "depends": {
     "java": ">=21",

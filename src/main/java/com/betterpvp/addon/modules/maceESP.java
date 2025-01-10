@@ -1,11 +1,17 @@
 package com.betterpvp.addon.modules;
 
 import com.betterpvp.addon.BetterPvP;
+import com.mojang.logging.LogUtils;
+import meteordevelopment.meteorclient.events.entity.EntityAddedEvent;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
+import meteordevelopment.orbit.EventHandler;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Hand;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +22,7 @@ public class maceESP extends Module {
     private final SettingGroup sgRender = this.settings.createGroup("Render");
     private final SettingGroup sgDistances = this.settings.createGroup("Distances");
     private final Map<UUID, Boolean> playerHoldingState = new HashMap<>();
+    private static final Logger LOG = LogUtils.getLogger();
 
     private final Setting<Double> reach = sgDistances.add(new DoubleSetting.Builder()
         .name("reach")
@@ -57,33 +64,12 @@ public class maceESP extends Module {
         super(BetterPvP.CATEGORY, "mace-esp", "Shows you who has the mace.");
     }
 
-    @Override
-    public void onInitialize() {
-        // Track players' hand item changes
-        ServerTickEvents.END_PLAYER_TICK.register(this::onPlayerTick);
-    }
+    @EventHandler
+    private void onEntityAdded(EntityAddedEvent event) {
 
-    private void onPlayerTick(PlayerEntity player) {
-        // Get the player's UUID
-        UUID playerId = player.getUuid();
+        if (!(event.entity instanceof PlayerEntity)) return;
+        LOG.info(((PlayerEntity) event.entity).getStackInHand(Hand.MAIN_HAND).toString());
 
-        // Get the item in their main and off hand
-        ItemStack mainHandItem = player.getMainHandStack();
-        ItemStack offHandItem = player.getOffHandStack();
-
-        // Check if the player is holding the desired item
-        boolean isHoldingItem = mainHandItem.getItem() == Items.DIAMOND_SWORD || offHandItem.getItem() == Items.DIAMOND_SWORD;
-
-        // Only update the state if it has changed
-        if (playerHoldingState.getOrDefault(playerId, false) != isHoldingItem) {
-            playerHoldingState.put(playerId, isHoldingItem);
-
-            // Log or perform an action
-            if (isHoldingItem) {
-                System.out.println(player.getName().getString() + " started holding a diamond sword!");
-            } else {
-                System.out.println(player.getName().getString() + " stopped holding a diamond sword!");
-            }
-        }
+        //playerHoldingState.put(event.entity.getUuid(), );
     }
 }

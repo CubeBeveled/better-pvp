@@ -69,6 +69,4 @@ public class CrystalAuraMinus extends Module {
         event.renderer.box(marker, color.get(), color.get(), ShapeMode.Both, 0);
     }
 
-    @EventHandler
-    private void on
 }
