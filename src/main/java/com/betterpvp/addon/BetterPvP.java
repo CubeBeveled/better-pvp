@@ -26,8 +26,8 @@ public class BetterPvP extends MeteorAddon {
 
         // Modules
         Modules.get().add(new ModuleExample());
-        Modules.get().add(new ModuleExample());
-        Modules.get().add(new CrystalAuraMinus());
+        //Modules.get().add(new ModuleExample());
+        //Modules.get().add(new CrystalAuraMinus());
         Modules.get().add(new maceESP());
 
         // Commands
