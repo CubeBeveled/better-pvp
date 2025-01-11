@@ -10,7 +10,7 @@
   "contact": {
     "repo": "https://github.com/CubeBeveled/better-pvp"
   },
-  "icon": "assets/template/icon.png",
+  "icon": "assets/better-pvp/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
