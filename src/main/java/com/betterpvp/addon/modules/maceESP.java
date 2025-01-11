@@ -1,7 +1,6 @@
 package com.betterpvp.addon.modules;
 
 import com.betterpvp.addon.BetterPvP;
-import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.events.render.Render3DEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;
@@ -15,10 +14,8 @@ import meteordevelopment.orbit.EventHandler;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +25,6 @@ public class maceESP extends Module {
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
     private final SettingGroup sgRender = this.settings.createGroup("Render");
     private final Map<UUID, Boolean> playersHoldingMace = new HashMap<>();
-    private static final Logger LOG = LogUtils.getLogger();
 
     private final Setting<SettingColor> playerColor = sgRender.add(new ColorSetting.Builder()
         .name("player-color")
@@ -45,7 +41,7 @@ public class maceESP extends Module {
     );
 
     private final Setting<Target> tracerTarget = sgRender.add(new EnumSetting.Builder<Target>()
-        .name("target")
+        .name("tracer-target")
         .description("What part of the player is the tracer going to.")
         .defaultValue(Target.Body)
         .visible(tracers::get)
@@ -56,6 +52,14 @@ public class maceESP extends Module {
         .name("chat-feedback")
         .description("If the module should warn you in chat about who has the mace.")
         .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> notifyWhenHolding = sgRender.add(new BoolSetting.Builder()
+        .name("notify-when-holding")
+        .description("If you should be notified via chat when someone is holding the mace.")
+        .defaultValue(false)
+        .visible(chatNotify::get)
         .build()
     );
 
@@ -75,24 +79,36 @@ public class maceESP extends Module {
     private void onTick(TickEvent.Post event) {
         if (!tracers.get()) return;
 
+        if (mc.world.getPlayers() == null) return;
+
         for (AbstractClientPlayerEntity player : mc.world.getPlayers()) {
             if (player == null || mc.player.getUuid() == null) continue;
             if (player.getUuid() == mc.player.getUuid() || Friends.get().isFriend(player)) continue;
 
             ItemStack handItem = player.getStackInHand(Hand.MAIN_HAND);
             UUID playerUuid = player.getUuid();
-            LOG.info(handItem.toString());
 
             if (handItem.getItem() == Items.MACE) {
-                if (chatNotify.get() && !playersHoldingMace.containsKey(playerUuid)) {
-                    info(
-                        "(highlight)%s(default) has the mace.",
-                        player.getName().toString(),
-                        player.getX(),
-                        player.getY(),
-                        player.getZ()
-                    );
+                if (chatNotify.get()) {
+                    if (notifyWhenHolding.get()) {
+                        info(
+                            "(highlight)%s(default) has the mace.",
+                            player.getName(),
+                            player.getX(),
+                            player.getY(),
+                            player.getZ()
+                        );
+                    } else if (!playersHoldingMace.containsKey(playerUuid)) {
+                        info(
+                            "(highlight)%s(default) has the mace.",
+                            player.getName(),
+                            player.getX(),
+                            player.getY(),
+                            player.getZ()
+                        );
+                    }
                 }
+
                 playersHoldingMace.put(playerUuid, true);
             } else {
                 playersHoldingMace.put(playerUuid, false);
