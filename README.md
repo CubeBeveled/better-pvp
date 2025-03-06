@@ -17,7 +17,7 @@ A meteor client addon with PvP related modules.
 * [ ] Killaura+ (with more options)
 * [ ] Triggerbot
 * [ ] Auto bridge (sneaks on block edge n shi. Has multiple modes _from prestige_)
-* [ ] W tap 
+* [ ] W tap
 * [ ] Bow releaser
 * [ ] Chest search (also looks in shulkers)
 * [ ] Auto sign (sign the block not sign a book)

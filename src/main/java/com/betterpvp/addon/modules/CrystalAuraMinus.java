@@ -1,8 +1,6 @@
 package com.betterpvp.addon.modules;
 
 import com.betterpvp.addon.BetterPvP;
-import meteordevelopment.meteorclient.events.render.Render3DEvent;
-import meteordevelopment.meteorclient.renderer.ShapeMode;
 import meteordevelopment.meteorclient.settings.ColorSetting;
 import meteordevelopment.meteorclient.settings.DoubleSetting;
 import meteordevelopment.meteorclient.settings.Setting;
@@ -11,9 +9,6 @@ import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
-import meteordevelopment.orbit.EventHandler;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 
 public class CrystalAuraMinus extends Module {
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
@@ -49,23 +44,5 @@ public class CrystalAuraMinus extends Module {
 
     public CrystalAuraMinus(Category category, String name, String desc) {
         super(category, name, desc);
-    }
-
-    /**
-     * Example event handling method.
-     * Requires {@link BetterPvP#getPackage()} to be setup correctly, will fail silently otherwise.
-     */
-    @EventHandler
-    private void onRender3d(Render3DEvent event) {
-        // Create & stretch the marker object
-        Box marker = new Box(BlockPos.ORIGIN);
-        marker.stretch(
-            scale.get() * marker.getLengthX(),
-            scale.get() * marker.getLengthY(),
-            scale.get() * marker.getLengthZ()
-        );
-
-        // Render the marker based on the color setting
-        event.renderer.box(marker, color.get(), color.get(), ShapeMode.Both, 0);
     }
 }

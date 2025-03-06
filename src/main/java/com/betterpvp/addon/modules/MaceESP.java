@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class maceESP extends Module {
+public class MaceESP extends Module {
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
     private final SettingGroup sgRender = this.settings.createGroup("Render");
     private final Map<UUID, Boolean> playersHoldingMace = new HashMap<>();
@@ -70,7 +70,7 @@ public class maceESP extends Module {
         .build()
     );
 
-    public maceESP() {
+    public MaceESP() {
         super(BetterPvP.CATEGORY, "mace-esp", "Shows you who has the mace.");
     }
 
