@@ -2,7 +2,6 @@ package com.betterpvp.addon;
 
 import com.betterpvp.addon.hud.HudExample;
 import com.betterpvp.addon.modules.MaceESP;
-import com.betterpvp.addon.modules.ModuleExample;
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
@@ -22,7 +21,6 @@ public class BetterPvP extends MeteorAddon {
         LOG.info("Initializing Better PvP");
 
         // Modules
-        Modules.get().add(new ModuleExample());
         //Modules.get().add(new CrystalAuraMinus());
         Modules.get().add(new MaceESP());
 

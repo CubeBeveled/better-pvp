@@ -128,9 +128,9 @@ public class MaceESP extends Module {
 
             Color color = playerColor.get();
 
-            double x = player.prevX + (player.getX() - player.prevX) * event.tickDelta;
-            double y = player.prevY + (player.getY() - player.prevY) * event.tickDelta;
-            double z = player.prevZ + (player.getZ() - player.prevZ) * event.tickDelta;
+            double x = player.lastX + (player.getX() - player.lastX) * event.tickDelta;
+            double y = player.lastY + (player.getY() - player.lastY) * event.tickDelta;
+            double z = player.lastZ + (player.getZ() - player.lastZ) * event.tickDelta;
 
             double height = player.getBoundingBox().maxY - player.getBoundingBox().minY;
             if (tracerTarget.get() == Target.Head) y += height;

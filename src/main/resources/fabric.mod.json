@@ -8,7 +8,7 @@
     "Beveled Cube"
   ],
   "contact": {
-    "repo": "https://github.com/CubeBeveled/better-pvp"
+    "sources": "https://github.com/CubeBeveled/better-pvp"
   },
   "icon": "assets/better-pvp/icon.png",
   "environment": "client",
@@ -21,11 +21,11 @@
     "better-pvp.mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "192, 207, 209"
+    "meteor-client:color": "225,25,25"
   },
   "depends": {
     "java": ">=21",
-    "minecraft": ["${mc_version}"],
+    "minecraft": ["${mc_version}", "1.21.7", "1.21.6"],
     "meteor-client": "*"
   }
 }
