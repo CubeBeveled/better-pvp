@@ -1,6 +1,5 @@
 package com.betterpvp.addon;
 
-import com.betterpvp.addon.commands.CommandExample;
 import com.betterpvp.addon.hud.HudExample;
 import com.betterpvp.addon.modules.MaceESP;
 import com.betterpvp.addon.modules.ModuleExample;
@@ -28,9 +27,6 @@ public class BetterPvP extends MeteorAddon {
         //Modules.get().add(new ModuleExample());
         //Modules.get().add(new CrystalAuraMinus());
         Modules.get().add(new MaceESP());
-
-        // Commands
-        Commands.add(new CommandExample());
 
         // HUD
         Hud.get().register(HudExample.INFO);
