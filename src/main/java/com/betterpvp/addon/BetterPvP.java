@@ -16,8 +16,8 @@ import org.slf4j.Logger;
 
 public class BetterPvP extends MeteorAddon {
     public static final Logger LOG = LogUtils.getLogger();
-    public static final Category CATEGORY = new Category("Example");
-    public static final HudGroup HUD_GROUP = new HudGroup("Example");
+    public static final Category CATEGORY = new Category("Better PvP");
+    public static final HudGroup HUD_GROUP = new HudGroup("Better PvP");
 
     @Override
     public void onInitialize() {
