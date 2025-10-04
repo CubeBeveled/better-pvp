@@ -6,7 +6,6 @@ import com.betterpvp.addon.modules.ModuleExample;
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
-import meteordevelopment.meteorclient.commands.Commands;
 import meteordevelopment.meteorclient.systems.hud.Hud;
 import meteordevelopment.meteorclient.systems.hud.HudGroup;
 import meteordevelopment.meteorclient.systems.modules.Category;
@@ -24,7 +23,6 @@ public class BetterPvP extends MeteorAddon {
 
         // Modules
         Modules.get().add(new ModuleExample());
-        //Modules.get().add(new ModuleExample());
         //Modules.get().add(new CrystalAuraMinus());
         Modules.get().add(new MaceESP());
 
